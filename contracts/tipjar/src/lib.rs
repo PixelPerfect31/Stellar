@@ -32,7 +32,7 @@ impl TipJarContract {
         env.storage().instance().set(&total_key, &total);
         
         // Extend TTL to keep instance storage alive
-        env.storage().instance().extend_ttl_info(100, 100);
+        env.storage().instance().extend_ttl(100, 100);
 
         // Emit a "tip_received" event containing: sender address, amount, and timestamp
         let event_key = Symbol::new(&env, "tip_received");

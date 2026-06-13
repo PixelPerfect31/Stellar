@@ -22,3 +22,5 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+# Soroban/Rust build artifacts
+contracts/**/target/
