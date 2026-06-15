@@ -137,7 +137,7 @@ Stellar Testnet
 Add screenshots inside:
 
 ```text
-screenshots/desktop.png
+screenshots/front.png
 ```
 
 ---
