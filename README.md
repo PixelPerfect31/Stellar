@@ -1,91 +1,166 @@
-# StellarTip 🚀💸
+# StellarPay 🚀
 
-A decentralized multi-wallet Tip Jar dApp built on the **Stellar Blockchain** using **Soroban Smart Contracts**. StellarTip allows users to connect their Stellar wallets, view balances, send tips securely on the Stellar Testnet, and track transaction status in real time.
+A Level 2 Stellar & Soroban dApp built on the Stellar Testnet using React, Vite, Tailwind CSS, and Soroban Smart Contracts.
+
+StellarPay allows users to connect Stellar wallets, view balances, send XLM payments, interact with a deployed Soroban smart contract, and track contract activity in real time through a modern, responsive interface.
 
 ---
 
 ## 🌐 Live Demo
 
 **Live Application:**
-https://YOUR-VERCEL-LINK.vercel.app
+https://stellar-gules.vercel.app/
 
 ---
 
-## 🎥 Demo Video
+## 📹 Demo Video
 
-Watch the full demo here:
+Watch the complete project demonstration:
 
-**Demo Video Link:**
-PASTE_YOUR_YOUTUBE_OR_GOOGLE_DRIVE_LINK_HERE
+https://youtu.be/43TlF08FKHo?si=Bj6gf8dkNGhYAJM-
 
 ---
 
-## 📜 Contract Information
+## 📂 GitHub Repository
 
-| Item              | Value                                                                                               |
-| ----------------- | --------------------------------------------------------------------------------------------------- |
-| Network           | Stellar Testnet                                                                                     |
-| Contract ID       | `CBLZAL7HCFIGW3M2HPQ6IHURYHL7EYVMMHEABDINE5VY52BPDXVHO4ST`                                          |
-| Deploy TX Hash    | `8eb5cfea4f808f74be193a63f11de68995034ad751181295a98503e932c42a20`                                  |
-| Contract Explorer | https://lab.stellar.org/r/testnet/contract/CBLZAL7HCFIGW3M2HPQ6IHURYHL7EYVMMHEABDINE5VY52BPDXVHO4ST |
+https://github.com/PixelPerfect31/Stellar
 
 ---
 
 ## ✨ Features
 
-* 🔗 Freighter wallet integration
-* 🔗 Albedo wallet integration
-* 💰 Display Stellar Testnet XLM balances
-* 💸 Send XLM tips through Soroban Smart Contracts
-* ⚡ Real-time transaction status updates
-* 📜 Recent activity/event tracking
-* 🔍 Explorer links for transactions
-* 📱 Fully mobile-responsive interface
-* 🛡️ Error handling for common wallet and network failures
-* ☁️ Automatic deployment through Vercel
+### Multi-Wallet Support
+
+* Freighter Wallet Integration
+* Albedo Wallet Integration
+* Wallet Connect / Disconnect
+* Automatic wallet persistence using localStorage
+
+### Balance Management
+
+* Fetch Stellar Testnet XLM balance
+* Real-time balance updates
+* Friendbot funding support
+
+### XLM Transactions
+
+* Send XLM payments on Stellar Testnet
+* Input validation
+* Success and failure notifications
+* Transaction hash tracking
+
+### Soroban Smart Contract
+
+* Deposit tips into Tip Jar contract
+* Read contract state
+* Real-time contract interaction
+* Event monitoring
+
+### Transaction Status Tracking
+
+Displays transaction stages:
+
+* Preparing
+* Awaiting Signature
+* Submitting
+* Pending Confirmation
+* Confirmed
+* Failed
+
+### Error Handling
+
+Handles multiple error types:
+
+* WalletNotInstalledError
+* UserRejectedTransactionError
+* NetworkError
+* InsufficientBalanceError
+* ContractExecutionError
 
 ---
 
-## ⚙️ Setup Instructions
+## 🔗 Smart Contract Information
 
-### Prerequisites
+| Item | Value |
+|--------|--------|
+| Network | Stellar Testnet |
+| Contract ID | CBLZAL7HCFIGW3M2HPQ6IHURYHL7EYVMMHEABDINE5VY52BPDXVHO4ST |
+| Smart Contract | Soroban Tip Jar |
+| Status | Deployed Successfully |
+| Deployment Transaction Hash | 8eb5cfea4f808f74be193a63f11de68995034ad751181295a98503e932c42a20 |
+| Contract Interaction Hash | fb354f5e9fcaf47794a45dd9549bd992668fb3b5b9b792c753e5314f8435ec4c |
+## 🛠 Tech Stack
 
-Make sure you have the following installed:
+### Frontend
 
-* Node.js (v18 or later)
-* npm
-* Freighter Wallet Extension OR Albedo Wallet
-* Git
+* React 19
+* Vite
+* Tailwind CSS
+* React Toastify
+
+### Blockchain
+
+* Stellar SDK
+* Soroban Smart Contracts
+* Horizon API
+* Soroban RPC
+
+### Wallets
+
+* Freighter Wallet
+* Albedo Wallet
+
+### Deployment
+
+* GitHub
+* Vercel
+* GitHub Actions
 
 ---
 
-## 🚀 Run Locally
+## 📁 Project Structure
 
-Clone the repository:
+```text
+contracts/
+└── tipjar/
+
+src/
+├── components/
+├── config/
+├── contracts/
+├── events/
+├── services/
+├── utils/
+├── wallets/
+
+README.md
+package.json
+```
+
+---
+
+## 🚀 Installation & Setup
+
+### Clone Repository
 
 ```bash
 git clone https://github.com/PixelPerfect31/Stellar.git
-```
-
-Move into the project directory:
-
-```bash
 cd Stellar
 ```
 
-Install dependencies:
+### Install Dependencies
 
 ```bash
 npm install
 ```
 
-Start the development server:
+### Run Development Server
 
 ```bash
 npm run dev
 ```
 
-Open the application:
+Application runs at:
 
 ```text
 http://localhost:5173
@@ -93,205 +168,131 @@ http://localhost:5173
 
 ---
 
-## 🏗️ Smart Contract Development
-
-Navigate to the Soroban contract:
+## 🧪 Build Project
 
 ```bash
-cd contracts/tipjar
+npm run build
 ```
-
-Build the contract:
-
-```bash
-stellar contract build
-```
-
-Deploy to Stellar Testnet:
-
-```bash
-stellar contract deploy \
-  --wasm target/wasm32v1-none/release/soroban_tipjar_contract.wasm \
-  --source deployer \
-  --network testnet
-```
-
----
-
-## 🏛️ Architecture
-
-Frontend (React + Vite)
-↓
-Freighter / Albedo Wallets
-↓
-Soroban Smart Contract
-↓
-Stellar Testnet
 
 ---
 
 ## 📸 Screenshots
 
-### Desktop View
+### Home Dashboard
 
-Add screenshots inside:
+![Home Dashboard](screenshots/front.png)
 
-```text
-screenshots/front.png
-```
+### Wallet Connection
 
----
+![Wallet Connection](screenshots/wallet.png)
 
-### Mobile Responsive View
+### Connected Wallet & Balance
 
-Add screenshots inside:
-
-```text
-screenshots/mobile.png
-```
-
----
-
-### Wallet Connected
-
-Add screenshots inside:
-
-```text
-screenshots/wallet-connected.png
-```
-
----
+![Connected Wallet](screenshots/connected.png)
 
 ### Transaction Success
 
-Add screenshots inside:
+![Transaction Success](screenshots/trans4.png)
 
-```text
-screenshots/transaction-success.png
-```
+### Mobile Responsive View
+
+![Mobile Responsive View](screenshots/mobile.jpeg)
 
 ---
 
-## 🧪 Testing
+## ⚙️ Soroban Contract Deployment
 
-This project includes automated tests.
-
-Run tests:
+### Build Contract
 
 ```bash
-npm test
+stellar contract build
 ```
 
-Example output:
+### Deploy Contract
+
+```bash
+stellar contract deploy \
+--wasm target/wasm32v1-none/release/soroban_tipjar_contract.wasm \
+--source deployer \
+--network testnet
+```
+
+### Contract ID
 
 ```text
-✓ Wallet connection renders correctly
-✓ Deposit validation works
-✓ Transaction status updates correctly
-
-Test Files  1 passed
-Tests       3 passed
+CBLZAL7HCFIGW3M2HPQ6IHURYHL7EYVMMHEABDINE5VY52BPDXVHO4ST
 ```
 
 ---
 
 ## 🔄 CI/CD
 
-This project uses **GitHub Actions** for Continuous Integration and **Vercel** for Continuous Deployment.
+GitHub Actions automatically:
 
-### GitHub Actions
+* Install dependencies
+* Run validation checks
+* Build project
+* Verify deployment readiness
 
-Every push to the `main` branch automatically:
-
-* Installs dependencies
-* Builds the application
-* Runs automated checks
-
-### Vercel
-
-Every successful push automatically deploys the latest version.
-
----
-
-## 🛠️ Tech Stack
-
-### Frontend
-
-* React
-* Vite
-* JavaScript
-* CSS
-
-### Blockchain
-
-* Stellar Testnet
-* Soroban Smart Contracts
-* Stellar SDK
-
-### Wallets
-
-* Freighter
-* Albedo
-
-### Smart Contract
-
-* Rust
-* Soroban SDK
-
-### Deployment
-
-* Vercel
-* GitHub Actions
-
----
-
-## 👨‍💻 Project Structure
+Workflow file:
 
 ```text
-Stellar/
-├── src/
-├── contracts/
-│   └── tipjar/
-├── public/
-├── screenshots/
-├── .github/
-│   └── workflows/
-├── README.md
-└── package.json
+.github/workflows/ci.yml
 ```
 
 ---
 
-## 📌 Submission Details
+## ✅ Level 2 Requirements Completed
 
-### GitHub Repository
-
-https://github.com/PixelPerfect31/Stellar
-
-### Live Demo
-
-PASTE_YOUR_VERCEL_LINK_HERE
-
-### Contract Address
-
-CBLZAL7HCFIGW3M2HPQ6IHURYHL7EYVMMHEABDINE5VY52BPDXVHO4ST
-
-### Contract Deployment Transaction
-
-8eb5cfea4f808f74be193a63f11de68995034ad751181295a98503e932c42a20
-
-### Contract Interaction Transaction
-
-PASTE_A_REAL_TRANSACTION_HASH_FROM_THE_APP_HERE
-
-### Demo Video
-
-PASTE_YOUR_VIDEO_LINK_HERE
+* Wallet Connect Functionality
+* Wallet Disconnect Functionality
+* Freighter Integration
+* Albedo Integration
+* Multi-Wallet Support
+* Balance Fetching
+* XLM Transaction Support
+* Contract Deployed on Testnet
+* Frontend Contract Interaction
+* Real-Time Event Integration
+* Transaction Status Tracking
+* Error Handling
+* Mobile Responsive UI
+* Public GitHub Repository
+* GitHub Actions CI/CD
+* Vercel Deployment
+* README Documentation
+* Demo Video
 
 ---
 
-## 🙌 Acknowledgements
+## 📈 Git Commit History
 
-Built as part of the Stellar Developer Challenge to explore Soroban smart contracts, multi-wallet integrations, and decentralized application development on Stellar.
+* feat: add multi-wallet support with Freighter and Albedo integration
+* feat: implement Soroban tip jar contract and frontend contract interactions
+* feat: add real-time event subscriptions and transaction status tracking
+* refactor: improve error handling, UI polish, and production readiness
+* feat: complete Stellar Level 2 with deployed Soroban Tip Jar
 
+---
 
+## 🔗 Useful Links
+
+### Stellar Documentation
+
+https://developers.stellar.org/
+
+### Soroban Documentation
+
+https://soroban.stellar.org/
+
+### Stellar Expert Explorer
+
+https://stellar.expert
+
+---
+
+## 👨‍💻 Developer
+
+**Rahul**
+
+Built as part of the Stellar Developer Program Level 2 Challenge using Stellar, Soroban, React, and Vercel.

@@ -1,4 +1,4 @@
-import { Horizon, TransactionBuilder, Networks, Operation, Asset, rpc } from "@stellar/stellar-sdk";
+import { Horizon, TransactionBuilder, Networks, Operation, Asset } from "@stellar/stellar-sdk";
 import { signTx } from "../wallets/wallet-manager";
 import { mapRawError } from "../utils/errors";
 

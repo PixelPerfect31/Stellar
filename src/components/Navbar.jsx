@@ -1,4 +1,3 @@
-import React from "react";
 import { Wallet, LogOut, Radio, Coins } from "lucide-react";
 
 /**

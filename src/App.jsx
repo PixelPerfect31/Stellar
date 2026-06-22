@@ -84,9 +84,15 @@ export default function App() {
   // Sync balance when public key changes
   useEffect(() => {
     if (publicKey) {
-      loadAccountBalance(publicKey);
+      const timer = setTimeout(() => {
+        loadAccountBalance(publicKey);
+      }, 0);
+      return () => clearTimeout(timer);
     } else {
-      setBalanceData(null);
+      const timer = setTimeout(() => {
+        setBalanceData(null);
+      }, 0);
+      return () => clearTimeout(timer);
     }
   }, [publicKey]);
 

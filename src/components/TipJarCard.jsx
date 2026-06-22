@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { Coins, Heart, AlertTriangle, ArrowRight, RefreshCw, Star } from "lucide-react";
+import { useState, useEffect, useCallback } from "react";
+import { Heart, AlertTriangle, ArrowRight, RefreshCw } from "lucide-react";
 import { getJarTotal, depositTip } from "../contracts/tipjar";
 import { CONTRACT_ID } from "../config/contract";
 import { toast } from "react-toastify";
@@ -16,9 +16,11 @@ export default function TipJarCard({ publicKey, walletType, onTipSuccess, onProg
   const [lastTip, setLastTip] = useState(() => localStorage.getItem("last_tip_amount") || "");
 
   // Load contract total tips
-  const loadTotalTips = async () => {
+  const loadTotalTips = useCallback(async () => {
     if (!CONTRACT_ID) return;
-    setIsTotalLoading(true);
+    setTimeout(() => {
+      setIsTotalLoading(true);
+    }, 0);
     try {
       const total = await getJarTotal(publicKey);
       setTotalTips(total);
@@ -26,15 +28,20 @@ export default function TipJarCard({ publicKey, walletType, onTipSuccess, onProg
       console.error("Failed to load total tips:", error);
       // We don't toast errors repeatedly during background polls, but log it
     } finally {
-      setIsTotalLoading(false);
+      setTimeout(() => {
+        setIsTotalLoading(false);
+      }, 0);
     }
-  };
+  }, [publicKey]);
 
   useEffect(() => {
     if (CONTRACT_ID) {
-      loadTotalTips();
+      const timer = setTimeout(() => {
+        loadTotalTips();
+      }, 0);
+      return () => clearTimeout(timer);
     }
-  }, [publicKey]);
+  }, [loadTotalTips]);
 
   const handleDeposit = async (e) => {
     e.preventDefault();

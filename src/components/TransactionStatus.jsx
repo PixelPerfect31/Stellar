@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { CheckCircle2, XCircle, ExternalLink, Copy, Check, Clock, Radio, KeyRound, ArrowUpRight, ShieldCheck, Activity } from "lucide-react";
+import { useState } from "react";
+import { CheckCircle2, XCircle, ExternalLink, Copy, Check, Clock, Radio, KeyRound, ArrowUpRight, Activity } from "lucide-react";
 import { LoadingSpinner } from "./Loader";
 
 /**

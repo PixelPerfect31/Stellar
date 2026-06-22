@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { X, Wallet, ShieldCheck, ShieldAlert, ChevronRight, Activity } from "lucide-react";
 import { checkWalletInstalled, WALLET_TYPES } from "../wallets/wallet-manager";
 

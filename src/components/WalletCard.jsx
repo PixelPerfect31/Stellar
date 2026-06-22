@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { AlertCircle, Check, Copy, ShieldCheck, Wallet, Globe, ArrowRight } from "lucide-react";
+import { useState } from "react";
+import { AlertCircle, Check, Copy, ShieldCheck, Wallet, ArrowRight } from "lucide-react";
 
 /**
  * Wallet Connection Card.

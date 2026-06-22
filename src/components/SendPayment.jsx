@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Send, ArrowRight, AlertCircle } from "lucide-react";
 import { validateTransactionInput } from "../utils/validators";
 
@@ -15,49 +15,40 @@ export default function SendPayment({
 }) {
   const [recipient, setRecipient] = useState("");
   const [amount, setAmount] = useState("");
-  const [error, setError] = useState("");
 
   const currentBalance = balanceData?.balance ? parseFloat(balanceData.balance) : 0;
 
   // Clear input fields when a transaction succeeds
   useEffect(() => {
     if (txSuccess) {
-      setRecipient("");
-      setAmount("");
-      setError("");
+      const timer = setTimeout(() => {
+        setRecipient("");
+        setAmount("");
+      }, 0);
+      return () => clearTimeout(timer);
     }
   }, [txSuccess]);
 
-  // Run live validation on inputs
-  useEffect(() => {
-    if (!recipient && !amount) {
-      setError("");
-      return;
-    }
-
+  // Compute validation error dynamically during render
+  let error = "";
+  if (recipient || amount) {
     const val = validateTransactionInput(recipient, amount || "0", currentBalance);
-    if (!val.isValid && (recipient || amount)) {
+    if (!val.isValid) {
       // Don't show balance errors if amount is empty/unfinished
-      if (amount === "" && val.message.includes("Amount must be a positive number")) {
-        setError("");
-      } else {
-        setError(val.message);
+      if (!(amount === "" && val.message.includes("Amount must be a positive number"))) {
+        error = val.message;
       }
-    } else {
-      setError("");
     }
-  }, [recipient, amount, currentBalance]);
+  }
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
     const val = validateTransactionInput(recipient, amount, currentBalance);
     if (!val.isValid) {
-      setError(val.message);
       return;
     }
 
-    setError("");
     onSubmit(recipient.trim(), amount);
   };
 

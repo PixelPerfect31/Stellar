@@ -48,8 +48,8 @@ export const getJarTotal = async (userPk = "") => {
 
     // 3. Simulate
     const simulation = await rpcServer.simulateTransaction(tx);
-    if (simulation.error || !simulation.results) {
-      throw new Error(`Simulation failed: ${simulation.error || "no results returned"}`);
+    if (simulation.error || !simulation.result) {
+      throw new Error(`Simulation failed: ${simulation.error || "no result returned"}`);
     }
 
     const retval = simulation.result?.retval;
@@ -98,7 +98,7 @@ export const depositTip = async (walletType, senderPk, amount, onProgress) => {
       sourceAccount = await rpcServer.getAccount(senderPk);
     } catch (error) {
       console.error("Failed to fetch account sequence:", error);
-      throw new Error("Failed to load account from Soroban RPC. Ensure your account is funded with XLM.");
+      throw new Error("Failed to load account from Soroban RPC. Ensure your account is funded with XLM.", { cause: error });
     }
 
     // 2. Build transaction
@@ -121,7 +121,7 @@ export const depositTip = async (walletType, senderPk, amount, onProgress) => {
     onProgress({ status: "simulating", message: "Simulating transaction on Soroban RPC..." });
     const simulation = await rpcServer.simulateTransaction(tx);
     
-    if (simulation.error || !simulation.results) {
+    if (simulation.error || !simulation.result) {
       throw new Error(`Simulation failed: ${simulation.error || "no execution results returned"}`);
     }
 

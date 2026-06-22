@@ -9,7 +9,7 @@ export const isValidAddress = (address) => {
   if (!address) return false;
   try {
     return StrKey.isValidEd25519PublicKey(address.trim());
-  } catch (error) {
+  } catch {
     return false;
   }
 };

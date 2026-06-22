@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { RefreshCw, Coins, HelpCircle, Sparkles } from "lucide-react";
 import { BalanceSkeleton } from "./Loader";
 import { fundAccountWithFriendbot } from "../services/stellar";

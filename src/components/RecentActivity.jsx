@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState, useCallback, useRef } from "react";
 import { Activity, Clock, Heart, User, Sparkles } from "lucide-react";
 import { fetchTipEvents } from "../events/subscription";
 import { CONTRACT_ID } from "../config/contract";
@@ -10,14 +10,16 @@ import { CONTRACT_ID } from "../config/contract";
 export default function RecentActivity({ refreshTrigger }) {
   const [activities, setActivities] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [lastLedger, setLastLedger] = useState(null);
+  const lastLedgerRef = useRef(null);
 
   // Load events
-  const loadEvents = async (showLoading = false) => {
+  const loadEvents = useCallback(async (showLoading = false) => {
     if (!CONTRACT_ID) return;
-    if (showLoading) setIsLoading(true);
+    if (showLoading) {
+      setTimeout(() => setIsLoading(true), 0);
+    }
     try {
-      const { events, latestLedger } = await fetchTipEvents(lastLedger);
+      const { events, latestLedger } = await fetchTipEvents(lastLedgerRef.current);
       
       // If we already have activities, merge them (avoiding duplicates)
       setActivities(prev => {
@@ -36,14 +38,16 @@ export default function RecentActivity({ refreshTrigger }) {
       });
 
       if (latestLedger) {
-        setLastLedger(latestLedger);
+        lastLedgerRef.current = latestLedger;
       }
     } catch (err) {
       console.error("Failed to load tip events:", err);
     } finally {
-      if (showLoading) setIsLoading(false);
+      if (showLoading) {
+        setTimeout(() => setIsLoading(false), 0);
+      }
     }
-  };
+  }, []);
 
   // Poll for events on mount & when refreshTrigger changes
   useEffect(() => {
@@ -58,7 +62,7 @@ export default function RecentActivity({ refreshTrigger }) {
     }, 6000);
 
     return () => clearInterval(interval);
-  }, [refreshTrigger]);
+  }, [loadEvents, refreshTrigger]);
 
   // Format short address
   const formatAddress = (addr) => {
@@ -68,6 +72,7 @@ export default function RecentActivity({ refreshTrigger }) {
 
   // Format relative time
   const formatRelativeTime = (timestamp) => {
+    // eslint-disable-next-line react-hooks/purity
     const diff = Date.now() - timestamp;
     const seconds = Math.floor(diff / 1000);
     const minutes = Math.floor(seconds / 60);
