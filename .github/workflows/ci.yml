@@ -9,7 +9,8 @@ on:
       - main
 
 jobs:
-  test:
+  frontend:
+    name: Frontend Build
     runs-on: ubuntu-latest
 
     steps:
@@ -24,5 +25,32 @@ jobs:
       - name: Install Dependencies
         run: npm install
 
-      - name: Build Project
+      - name: Build Frontend
         run: npm run build
+
+  smart-contract:
+    name: Build Soroban Smart Contract
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: contracts/tipjar
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Install Rust
+        uses: dtolnay/rust-toolchain@stable
+
+      - name: Add WASM Target
+        run: rustup target add wasm32v1-none
+
+      - name: Cache Cargo
+        uses: Swatinem/rust-cache@v2
+
+      - name: Build Smart Contract
+        run: cargo build --target wasm32v1-none --release
+
+      - name: Run Smart Contract Tests
+        run: cargo test
