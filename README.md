@@ -291,6 +291,15 @@ https://stellar.expert
 
 ---
 
+## 📝 Feedback
+
+We value your feedback! If you've used this project, we'd appreciate hearing about your experience, suggestions, or any issues you encountered.
+
+👉 **Share your feedback here:**  
+https://docs.google.com/spreadsheets/d/1Ry446KAYGmnGoOXcrTfY15ijz_QuYlAlCSezNp24OUM/edit?usp=sharing
+
+Your feedback helps us improve the project. Thank you for your support! ❤️
+
 ## 👨‍💻 Developer
 
 **Rahul**
